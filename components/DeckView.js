@@ -6,7 +6,12 @@ class DeckView extends Component {
     state = {
         deck: null,
     }
-    onPress = () => {
+    onCardPress = () => {
+        const { navigation, deck } = this.props;
+
+        navigation.navigate('QuestionAdd', {deck: deck});
+    }
+    onQuizzPress = () => {
         const { navigation, deck } = this.props;
 
         navigation.navigate('QuestionsView', {deck: deck});
@@ -21,12 +26,12 @@ class DeckView extends Component {
                 <View style={{height: 30}} />
                 <TouchableOpacity 
                     style={[styles.button, styles.buttonWhite]}
-                    onPress={this.onPress}>
+                    onPress={this.onCardPress}>
                     <Text style={styles.textBlack}>Add a Card</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={[styles.button, styles.buttonBlack]}
-                    onPress={this.onPress}>
+                    onPress={this.onQuizzPress}>
                     <Text style={styles.textWhite}>Start Quiz</Text>
                 </TouchableOpacity>
             </View>
@@ -36,7 +41,7 @@ class DeckView extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        deck: ownProps.navigation.state.params.deck,
+        deck: state.decks[ownProps.navigation.state.params.deck.id],
         navigation: ownProps.navigation,
     }
 }

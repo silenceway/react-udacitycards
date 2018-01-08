@@ -5,7 +5,7 @@ export const CARDS_STORAGE_KEY = 'UdaciCards:decks';
 function setDummyData() {
     const dummyData = {
         React: {
-          id: 1,
+          id: 'React',
           title: 'React',
           questions: [
             {
@@ -19,7 +19,7 @@ function setDummyData() {
           ]
         },
         JavaScript: {
-            id: 2,
+            id: 'JavaScript',
             title: 'JavaScript',
             questions: [
                 {

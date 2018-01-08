@@ -142,8 +142,6 @@ class CustomFlipView extends Component {
 var styles = StyleSheet.create({
   flippableView: {
     backfaceVisibility: 'hidden',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
   }
 });
 

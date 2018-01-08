@@ -119,7 +119,7 @@ class QuestionsView extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        deck: ownProps.navigation.state.params.deck,
+        deck: state.decks[ownProps.navigation.state.params.deck.id],
     }
 }
 
