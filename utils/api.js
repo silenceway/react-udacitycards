@@ -8,7 +8,6 @@ export function submitDeck(deck) {
 }
 
 export function getDecks() {
-  AsyncStorage.getItem(CARDS_STORAGE_KEY).then((r) => console.log(r));
   return AsyncStorage.getItem(CARDS_STORAGE_KEY)
     .then(formatDecks);
 }

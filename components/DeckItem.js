@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-// import DeckDetail from './DeckDetail';
 
-export default function DeckItem (deck) {
-console.log(deck);
+export default function DeckItem ({deck, numCards, navigation}) {
     onPress = () => {
+        navigation.navigate('DeckView', {deck: deck});
     }
 
     return (
@@ -16,7 +15,7 @@ console.log(deck);
             {deck.title}
             </Text>
             <Text>
-            {deck.numCards} Cards
+            {numCards} Cards
             </Text>
         </TouchableOpacity>
         </View>
