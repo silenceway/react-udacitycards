@@ -6,12 +6,14 @@ class DeckView extends Component {
     state = {
         deck: null,
     }
-    onPress() {
+    onPress = () => {
+        const { navigation, deck } = this.props;
 
+        navigation.navigate('QuestionsView', {deck: deck});
     }
     render() {
         const { deck } = this.props;
-console.log(deck);
+
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>{deck.title}</Text>
@@ -34,7 +36,8 @@ console.log(deck);
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        deck: ownProps.navigation.state.params.deck
+        deck: ownProps.navigation.state.params.deck,
+        navigation: ownProps.navigation,
     }
 }
 

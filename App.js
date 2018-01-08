@@ -7,6 +7,7 @@ import reducer from './reducers';
 import DeckList from './components/DeckList';
 import DeckView from './components/DeckView';
 import DeckAdd from './components/DeckAdd';
+import QuestionsView from './components/QuestionsView';
 
 const TabsNavigator = TabNavigator({
   Decks: {
@@ -42,6 +43,13 @@ const MainNavigator = StackNavigator({
   },
   DeckView: {
     screen: DeckView,
+    navigationOptions: ({ navigation }) => ({
+      headerMode: 'screen',
+      title: `${navigation.state.params.title}`,
+    }),
+  },
+  QuestionsView: {
+    screen: QuestionsView,
     navigationOptions: ({ navigation }) => ({
       headerMode: 'screen',
       title: `${navigation.state.params.title}`,

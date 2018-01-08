@@ -11,12 +11,8 @@ export default function DeckItem ({deck, numCards, navigation}) {
         <TouchableOpacity 
             style={styles.deckItem}
             onPress={this.onPress}>
-            <Text>
-            {deck.title}
-            </Text>
-            <Text>
-            {numCards} Cards
-            </Text>
+            <Text>{deck.title}</Text>
+            <Text>{numCards} Cards</Text>
         </TouchableOpacity>
         </View>
     )
