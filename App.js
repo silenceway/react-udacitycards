@@ -6,10 +6,36 @@ import { TabNavigator , StackNavigator, DrawerNavigator} from 'react-navigation'
 import reducer from './reducers';
 import DeckList from './components/DeckList';
 import DeckView from './components/DeckView';
+import DeckAdd from './components/DeckAdd';
+
+const TabsNavigator = TabNavigator({
+  Decks: {
+    screen: DeckList,
+    title: "Decks",
+    navigationOptions: {
+      tabBarLabel: "Decks",
+    }
+  },
+  DeckAdd: {
+    screen: DeckAdd,
+    title: "Add a Deck",
+    navigationOptions: {
+      header: null,
+    }
+  },
+},
+{
+  tabBarOptions: {
+    showIcon: true,
+    style: {
+      height : 60,
+    }
+  }
+});
 
 const MainNavigator = StackNavigator({
   Home: {
-    screen: DeckList,
+    screen: TabsNavigator,
     navigationOptions: {
       headerMode: 'none',
     },

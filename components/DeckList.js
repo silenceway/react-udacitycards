@@ -14,12 +14,12 @@ class DeckList extends Component {
     }
     render() {
         const { decks } = this.props;
-
         return (
             <View style={styles.deckList}>
                 <ScrollView>
-                {decks && decks.length && Object.keys(decks[0]).map((key) => {
-                    const deck = decks[0][key];
+                {Object.keys(decks).map((key) => {
+                    const deck = decks[key];
+
                     return (
                         <DeckItem key={deck.id} numCards={deck.questions.length} deck={deck} navigation={this.props.navigation} />
                         )

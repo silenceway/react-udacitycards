@@ -3,16 +3,18 @@ import { ADD_DECK, FETCH_DECKS } from '../actions/types'
 export default function decks (state = {}, action) {
     switch (action.type) {
         case ADD_DECK :
-            return [
+            const key = action.deck.title;
+
+            return {
                 ...state,
-                action.deck,
-            ]
+                key: action.deck,
+            }
         case FETCH_DECKS :
-            return [
+            return {
                 ...state,
-                action.decks,
-            ]
+                ...action.decks,
+            };
         default :
-            return state
+            return state;
     }
 }
