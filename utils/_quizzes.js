@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native'
 
 export const CARDS_STORAGE_KEY = 'UdaciCards:decks';
+export const NOTIFICATIONS_STORAGE_KEY = 'UdaciCards:notification';
 
 function setDummyData() {
     const dummyData = {

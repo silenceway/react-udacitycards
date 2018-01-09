@@ -9,6 +9,7 @@ import DeckView from './components/DeckView';
 import DeckAdd from './components/DeckAdd';
 import QuestionsView from './components/QuestionsView';
 import QuestionAdd from './components/QuestionAdd';
+import { setLocalNotification } from './utils/notifications';
 
 const TabsNavigator = TabNavigator({
   Decks: {
@@ -70,6 +71,9 @@ const MainNavigator = StackNavigator({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>

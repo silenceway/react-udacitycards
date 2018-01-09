@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Easing, View, Text, TextInput, TouchableOpacity, Platform, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import CustomFlipView from './CustomFlipView';
+import { setLocalNotification, clearLocalNotification } from '../utils/notifications';
 
 class QuestionsView extends Component {
     state = {
@@ -29,11 +30,25 @@ class QuestionsView extends Component {
             wrongAnswers: this.state.wrongAnswers + 1,
         }, () => this.gotoNextQuestion());
     }
+    onRestartPress = () => {
+        this.setState({
+            currentQuestion: 0,
+            rightAnswers: 0,
+            wrongAnswers: 0,
+            finish: false,
+        });
+    }
+    onReturnPress = () => {
+        this.props.navigation.goBack();
+    }
     gotoNextQuestion() {
         const questions = this.state.questions,
             currentQuestion = this.state.currentQuestion;
 
         if (currentQuestion + 1 >= questions.length) {
+            clearLocalNotification()
+                .then(setLocalNotification);
+
             this.setState({
                 finish: true,
             });
@@ -85,6 +100,16 @@ class QuestionsView extends Component {
                     <Text style={styles.title}>Finish</Text>
                     <Text>Right: {this.state.rightAnswers}</Text>
                     <Text>Wrong: {this.state.wrongAnswers}</Text>
+                    <TouchableOpacity
+                    style={[styles.button, styles.buttonGreen]}
+                    onPress={this.onRestartPress} >
+                        <Text style={styles.textWhite}>Restart Quiz</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.button, styles.buttonRed]}
+                        onPress={this.onReturnPress} >
+                        <Text style={styles.textWhite}>Return to Deck</Text>
+                    </TouchableOpacity>
                 </View> :
                 <View style={{position: 'relative', padding: 10}}>
                 {questions.length ?
@@ -120,6 +145,7 @@ class QuestionsView extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         deck: state.decks[ownProps.navigation.state.params.deck.id],
+        navigation: ownProps.navigation,
     }
 }
 

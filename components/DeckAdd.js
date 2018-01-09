@@ -24,6 +24,8 @@ class DeckAdd extends Component {
         });
 
         submitDeck(deck);
+
+        this.props.navigation.navigate('DeckView', {deck: deck});
     }
     render() {
         return (
